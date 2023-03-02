@@ -1,0 +1,18 @@
+{
+  "resourcePackages": [
+    "com.tcs.fixer.http"
+  ],
+  "prettyPrint" : true,
+  "cacheTTL": 0,
+  "openAPI": {
+    "info": {
+      "version": "1.0",
+      "title": "Fixer API",
+      "description": "This is a fixer api server.",
+      "contact": {
+        "name": "Mohd Fayaq",
+        "email": "mfay@tdcnet.dk"
+      }
+    }
+  }
+}

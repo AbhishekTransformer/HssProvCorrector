@@ -1,0 +1,80 @@
+2022-08-29 13:51:27:332 ERROR ConfigUtils.java main loadPropertiesFile ConfigUtils:94 - java.io.FileNotFoundException: C:\Users\1710042\Desktop\conf\HssProvCorrector\conf\Configuration.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.tcs.parser.utils.ConfigUtils.loadPropertiesFile(ConfigUtils.java:58)
+	at com.tcs.parser.main.EmResources.main(EmResources.java:34)
+
+2022-08-29 13:51:27:337 INFO EmResources.java main <init> EmResources:96 - Running on port number : 8080
+2022-08-29 13:51:27:337 INFO EmResources.java main configureServer EmResources:108 - ------Server Initialization loaded successfully--------
+2022-08-29 13:51:27:380 INFO EmResources.java main configureServer EmResources:116 - ------Sevlet Container loaded successfully--------
+2022-08-29 13:51:27:430 INFO EmResources.java main configureServer EmResources:143 - ------NCSARequestLog class generated successfully--------
+2022-08-29 13:51:27:431 INFO EmResources.java main <init> EmResources:98 - ------Configure Server successful--------
+2022-08-29 13:51:28:352 INFO EmResources.java Timer-0 run EmResources:57 - ---------------------Schedule Hss Corrector Started--------------------
+2022-08-29 13:51:28:356 ERROR EmDBConnection.java Timer-0 <clinit> EmDBConnection:29 - java.lang.NullPointerException
+	at java.io.File.<init>(File.java:279)
+	at com.tcs.service.dbconnectionmanager.EmDBConnection.<clinit>(EmDBConnection.java:20)
+	at com.tcs.parser.dao.ProcessLogDao.fetchSubProcessData(ProcessLogDao.java:30)
+	at com.tcs.corrector.service.Parser.parseSubProcesses(Parser.java:33)
+	at com.tcs.corrector.service.Parser.getFailureList(Parser.java:23)
+	at com.tcs.parser.controller.HSSProvControllerImpl.getFailureList(HSSProvControllerImpl.java:36)
+	at com.tcs.parser.controller.EmController.process(EmController.java:23)
+	at com.tcs.parser.main.EmResources.startHssProvCorrector(EmResources.java:87)
+	at com.tcs.parser.main.EmResources$1.run(EmResources.java:59)
+	at java.util.TimerThread.mainLoop(Timer.java:555)
+	at java.util.TimerThread.run(Timer.java:505)
+
+2022-08-29 13:51:28:357 ERROR EmDBConnection.java Timer-0 getSessionFactory EmDBConnection:39 - java.lang.NullPointerException
+	at java.io.File.<init>(File.java:279)
+	at com.tcs.service.dbconnectionmanager.EmDBConnection.getSessionFactory(EmDBConnection.java:36)
+	at com.tcs.parser.dao.ProcessLogDao.fetchSubProcessData(ProcessLogDao.java:30)
+	at com.tcs.corrector.service.Parser.parseSubProcesses(Parser.java:33)
+	at com.tcs.corrector.service.Parser.getFailureList(Parser.java:23)
+	at com.tcs.parser.controller.HSSProvControllerImpl.getFailureList(HSSProvControllerImpl.java:36)
+	at com.tcs.parser.controller.EmController.process(EmController.java:23)
+	at com.tcs.parser.main.EmResources.startHssProvCorrector(EmResources.java:87)
+	at com.tcs.parser.main.EmResources$1.run(EmResources.java:59)
+	at java.util.TimerThread.mainLoop(Timer.java:555)
+	at java.util.TimerThread.run(Timer.java:505)
+
+2022-08-29 13:51:28:359 ERROR ProcessLogDao.java Timer-0 fetchSubProcessData ProcessLogDao:54 - java.lang.NullPointerException
+	at com.tcs.parser.dao.ProcessLogDao.fetchSubProcessData(ProcessLogDao.java:31)
+	at com.tcs.corrector.service.Parser.parseSubProcesses(Parser.java:33)
+	at com.tcs.corrector.service.Parser.getFailureList(Parser.java:23)
+	at com.tcs.parser.controller.HSSProvControllerImpl.getFailureList(HSSProvControllerImpl.java:36)
+	at com.tcs.parser.controller.EmController.process(EmController.java:23)
+	at com.tcs.parser.main.EmResources.startHssProvCorrector(EmResources.java:87)
+	at com.tcs.parser.main.EmResources$1.run(EmResources.java:59)
+	at java.util.TimerThread.mainLoop(Timer.java:555)
+	at java.util.TimerThread.run(Timer.java:505)
+
+2022-08-29 13:51:28:361 ERROR ProcessLogDao.java Timer-0 fetchSubProcessData ProcessLogDao:59 - java.lang.NullPointerException
+	at com.tcs.parser.dao.ProcessLogDao.fetchSubProcessData(ProcessLogDao.java:57)
+	at com.tcs.corrector.service.Parser.parseSubProcesses(Parser.java:33)
+	at com.tcs.corrector.service.Parser.getFailureList(Parser.java:23)
+	at com.tcs.parser.controller.HSSProvControllerImpl.getFailureList(HSSProvControllerImpl.java:36)
+	at com.tcs.parser.controller.EmController.process(EmController.java:23)
+	at com.tcs.parser.main.EmResources.startHssProvCorrector(EmResources.java:87)
+	at com.tcs.parser.main.EmResources$1.run(EmResources.java:59)
+	at java.util.TimerThread.mainLoop(Timer.java:555)
+	at java.util.TimerThread.run(Timer.java:505)
+
+2022-08-29 13:51:28:362 INFO EmController.java Timer-0 process EmController:37 - java.lang.NullPointerException
+	at com.tcs.corrector.service.Parser.parseSubProcesses(Parser.java:37)
+	at com.tcs.corrector.service.Parser.getFailureList(Parser.java:23)
+	at com.tcs.parser.controller.HSSProvControllerImpl.getFailureList(HSSProvControllerImpl.java:36)
+	at com.tcs.parser.controller.EmController.process(EmController.java:23)
+	at com.tcs.parser.main.EmResources.startHssProvCorrector(EmResources.java:87)
+	at com.tcs.parser.main.EmResources$1.run(EmResources.java:59)
+	at java.util.TimerThread.mainLoop(Timer.java:555)
+	at java.util.TimerThread.run(Timer.java:505)
+
+2022-08-29 13:51:28:363 ERROR EmResources.java Timer-0 run EmResources:63 - java.lang.NullPointerException
+	at com.tcs.service.dbconnectionmanager.EmDBConnection.closeSessionFactory(EmDBConnection.java:46)
+	at com.tcs.parser.controller.EmController.process(EmController.java:39)
+	at com.tcs.parser.main.EmResources.startHssProvCorrector(EmResources.java:87)
+	at com.tcs.parser.main.EmResources$1.run(EmResources.java:59)
+	at java.util.TimerThread.mainLoop(Timer.java:555)
+	at java.util.TimerThread.run(Timer.java:505)
+
