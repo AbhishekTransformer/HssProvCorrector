@@ -121,14 +121,46 @@ public class BaseOci  {
 		try {
 
 			String requestContent = XmlDocHandler.getDomFileContent(this.requestDoc);
+	
 			requestContent = requestContent.replace("\r\n", "\n");
 			requestContent = requestContent.replace(
 							"<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"no\"?>",
 							"<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
+			
+			if(requestContent.contains("[phoneNumber]"))
+			{
+//				LOGGER.info("Able to find it here [phoneNumber]" );
+
+//				LOGGER.info("Able to replace, after replace: "+requestContent);
+				
+				requestContent = requestContent.replace("<alternateEntry01>\n"
+						, "");
+				 requestContent = requestContent.replace("<phoneNumber>[phoneNumber]</phoneNumber>\n"
+							, "");
+				 requestContent = requestContent.replace("</alternateEntry01>\n"
+							, "");
+			}	
+			
+			if(requestContent.contains("<phoneNumber xsi:nil=\"true\"/>\n"))
+			{
+//				LOGGER.info("Able to find it here nil one" );
+
+//				LOGGER.info("Able to replace, before replace: "+requestContent);
+				
+				requestContent = requestContent.replace("<alternateEntry01>\n"
+						, "");
+				 requestContent = requestContent.replace("<phoneNumber xsi:nil=\"true\"/>\n"
+							, "");
+				 requestContent = requestContent.replace("</alternateEntry01>\n"
+							, "");
+			}
+			
+			
 			PrintWriter out = new PrintWriter(this.getSelfSocket().getOutputStream(), true);
 			BufferedReader in = new BufferedReader(new InputStreamReader(this.getSelfSocket().getInputStream()));
 			out.println(requestContent);
 			LOGGER.info("request content" +requestContent);
+			
 			String responseContent = "";
 			int inputReceived = -1;
 			int counter = 0;

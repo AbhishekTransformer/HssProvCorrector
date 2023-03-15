@@ -43,6 +43,7 @@ public class Fixer {
         boolean isOtherPubIdExist = false;
         ExecuteOCI userFixer = null;
         try {
+        	
             userFixer = new ExecuteOCI(clusterId);
             HashMap<String, String> paramList = userFixer.init();
             //removed exception throw till here. As, if one OCI fails and goes to catch, we don't want other OCi to fail.
@@ -72,7 +73,8 @@ public class Fixer {
             if (isSCAExist) {
                 for (Map<String, String> profileObj : endpointTable) {
                     if (profileObj.get(SCAEndpoint.DEVICE_LEVEL.str()).equals("System") && profileObj.get(SCAEndpoint.DEVICE_NAME.str()).equals("Mobile")) {
-                        scaReq.deleteSCA(paramList, userFixer, userId, profileObj);
+                        
+                    	scaReq.deleteSCA(paramList, userFixer, userId, profileObj);
                         isOtherPubIdExist = true;
                         LOGGER.info("True B");
                     }
@@ -106,13 +108,15 @@ public class Fixer {
                 LOGGER.info("True E");
             }
             userModify.addUserModify(paramList, userFixer, userId, phoneNumber, accessDeviceEndpoint, tempSipAliasList2);
+            
             if (isSCAExist) {
             	//These two loops work for +45 number and it tries to arrange it considering 
             	//+45 at 0th index and others as it was
             	//-------------------------------------------------------------------------------------------
             	
+ /*           	
             	
-            	List<Map<String, String>> tmpObj=null;	
+            	ArrayList<Map<String, String>> tmpObj = new ArrayList<>();	
             	for(Map<String, String>tmpProfileObj : endpointTable)
             	{
             		 if (tmpProfileObj.get(SCAEndpoint.DEVICE_LEVEL.str()).equals("System") && tmpProfileObj.get(SCAEndpoint.DEVICE_NAME.str()).equals("Mobile")) {
@@ -121,6 +125,7 @@ public class Fixer {
             				 LOGGER.info("LinePort value"+ linePort);
             				 if (linePort.contains("+45"))
             				 {
+            					 LOGGER.info("tempProfile and tmpObj: "+ tmpProfileObj+ " "+ tmpObj);
             					 tmpObj.add(tmpProfileObj);
             					 LOGGER.info("tmpObj"+ tmpObj);
             					 break;
@@ -128,9 +133,7 @@ public class Fixer {
             			 
             		 }
             	}
-            
-				if (!tmpObj.isEmpty())
-            	{	
+            	LOGGER.info("OutSIde for tmpObj"+ tmpObj);
             	for(Map<String, String>tmpProfileObj1 : endpointTable)
                  	{
                  		 if (tmpProfileObj1.get(SCAEndpoint.DEVICE_LEVEL.str()).equals("System") && tmpProfileObj1.get(SCAEndpoint.DEVICE_NAME.str()).equals("Mobile")) 
@@ -139,27 +142,26 @@ public class Fixer {
                  			 if (!linePort.contains("+45"))
             				 {
             					 tmpObj.add(tmpProfileObj1);
-            					 LOGGER.info("tmpObj"+ tmpObj);
             					 break;
             				 }
                  				 
                  		 }
                  	}
-            	
-            	}		 
+            			 
             	LOGGER.info("tmpObj and endpointTable: "+ tmpObj+", "+ endpointTable);
-            	//------------------------------------------------------------------------------------------------------
-                for (Map<String, String> profileObj : endpointTable) {
-                    if (profileObj.get(SCAEndpoint.DEVICE_LEVEL.str()).equals("System") && profileObj.get(SCAEndpoint.DEVICE_NAME.str()).equals("Mobile")) {
+*/            	
+                for (Map<String, String> profileObj : endpointTable) {  //previously this (Map<String, String> profileObj : endpointTable)
+                    if ((profileObj.get(SCAEndpoint.DEVICE_LEVEL.str()).equals("System") && profileObj.get(SCAEndpoint.DEVICE_NAME.str()).equals("Mobile"))) 
+                    {
                         scaReq.addSCA(paramList, userFixer, userId, profileObj);
                         isOtherPubIdExist = true;
                         LOGGER.info("True F");
                     }
                 }
-            }
+        }
             if (isAltNumExist) {
                 List<AlternateNumberEntry> tempList = new ArrayList<AlternateNumberEntry>();
-                ;
+                
                 for (AlternateNumberEntry alt : alternateEntry) {
                     tempList.add(alt);
                 }
@@ -177,7 +179,9 @@ public class Fixer {
                 LOGGER.info("Checking " + isOtherPubIdExist + isAltNumExist + isSCAExist + allScaDevice);
                 isOciSuccess = false;
             }
-        } catch (Exception e) {
+        
+        }
+        catch (Exception e) {
             isOciSuccess = false;
             LOGGER.error("-----Error in OCI init------" + ConfigUtils.getStackTraceString(e));
         } finally {
